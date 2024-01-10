@@ -3,11 +3,17 @@
 #include <unistd.h>
 #include <string.h>
 #include <limits.h>
+#include <math.h>
+#include "MLX/MLX42.h"
+
 
 #define WIDTH 700
 #define HEIGHT 450
 #define SPEED 4
 #define FOV M_PI / 3.0
+#define TILE 64.0
+
+
 typedef struct s_player
 {
 	double x;
@@ -16,8 +22,6 @@ typedef struct s_player
 	double wall_hity;
 	double angle;
 } t_player;
-
-
 
 typedef struct s_game
 {
@@ -30,3 +34,7 @@ typedef struct s_game
 }	t_game;
 
 
+void	draw_point(t_game *game, double x, double y);
+void	draw_line(t_game *game);
+void	draw_rectangle(t_game *game, int y, int x, int color);
+void	draw_map(t_game *game);
