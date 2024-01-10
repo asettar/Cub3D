@@ -38,3 +38,5 @@ void	draw_point(t_game *game, double x, double y);
 void	draw_line(t_game *game);
 void	draw_rectangle(t_game *game, int y, int x, int color);
 void	draw_map(t_game *game);
+void	hook_handle(void *data);
+void	cast_rays(t_game *game);
