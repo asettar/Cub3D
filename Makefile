@@ -7,7 +7,7 @@ INCLUDE  =  -I/Users/${USER}/.brew/Cellar/glfw/3.3.8/include/GLFW
 LIB      =  -L/Users/${USER}/.brew/Cellar/glfw/3.3.8/lib
 
 
-SRCS	= main.c mlx.c draw_files.c player_mouvements.c casting.c
+SRCS	= main.c  draw_files.c player_mouvements.c casting.c
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -22,4 +22,4 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-re: fclean all
+re : fclean all

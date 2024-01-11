@@ -1,12 +1,6 @@
 #include "cub3d.h"
 
 
-
-
-
-
-
-
 int main(void)
 {
 	t_game game;
@@ -24,10 +18,15 @@ int main(void)
 	game.ply.y = 2 * TILE + (TILE / 2);
 	// depending on the orientation NSEW
 	game.ply.angle = -M_PI_2;
-	game.mlx = mlx_init(game.width, game.height, "42Balls", false);
+	//  for debugging in 2d
+	// game.mlx = mlx_init(game.width, game.height, "42Balls", false); 
+	// game.img = mlx_new_image(game.mlx, game.width, game.height);
+	
+	// for 3d projection
+	game.mlx = mlx_init(WIDTH, HEIGHT, "42Balls", false); 
+	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
 
 	// Create and display the image.
-	game.img = mlx_new_image(game.mlx, game.width, game.height);
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
 	mlx_loop_hook(game.mlx, hook_handle, &game);
 	mlx_loop(game.mlx);

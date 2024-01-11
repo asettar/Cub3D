@@ -58,7 +58,7 @@ double vertical_intersection(t_game *game, double angle)
 		// printf("%f : %f\n", yinter, xinter);
 
 		if (game->map[(int)(yinter/ TILE)][(int)(xinter / TILE)] == '1'){
-			printf("%f : %f || \n", yinter, xinter);
+			// printf("%f : %f || \n", yinter, xinter);
 			// draw_point(game, xinter, yinter);
 			return sqrt(pow(xinter - game->ply.x, 2) + pow(yinter - game->ply.y, 2));
 		}
@@ -68,15 +68,52 @@ double vertical_intersection(t_game *game, double angle)
 	return INT_MAX;
 }
 
+// void	cast_rays(t_game *game)
+// {
+// 	double distance;
+// 	double start_angle = game->ply.angle - FOV / 2.0;
+// 	double end_angle = game->ply.angle + FOV / 2.0;
+// 	while (start_angle < end_angle)
+// 	{
+// 		distance = fmin(horizantal_intersection(game, start_angle),
+// 			vertical_intersection(game, start_angle));
+// 		start_angle += M_PI / 180.0;
+// 	}
+// }
+
+void	project_wall(t_game *game, int x, double distance)
+{
+	double wall_height;
+
+	wall_height = TILE * ((WIDTH / 2) / tan(FOV / 2)) / distance;
+
+	int start_y = HEIGHT / 2 - wall_height / 2;
+	if (start_y < 0) start_y = 0;
+	int end_y = HEIGHT / 2 + wall_height / 2;
+	if (end_y >= HEIGHT) end_y = HEIGHT - 1;
+	printf("%d %d |, x = %d ||\n", start_y, end_y, x);
+	for(int y = 0; y < start_y; y++)
+		mlx_put_pixel(game->img, x, y, 0xCCCCCCFF);
+	for(int y = start_y; y < end_y; y++)
+	{
+		mlx_put_pixel(game->img, x, y, 0xFFCCCCFF);
+	}
+	for(int y = end_y + 1; y < HEIGHT; y++)
+		mlx_put_pixel(game->img, x, y, 0xFF00FFFF);
+
+}
+
 void	cast_rays(t_game *game)
 {
 	double distance;
-	double start_angle = game->ply.angle - FOV / 2.0;
-	double end_angle = game->ply.angle + FOV / 2.0;
-	while (start_angle < end_angle)
+	double start_angle = game->ply.angle - M_PI / 6;
+	int x = 0;
+	while (x < WIDTH)
 	{
 		distance = fmin(horizantal_intersection(game, start_angle),
 			vertical_intersection(game, start_angle));
-		start_angle += M_PI / 180.0;
+		project_wall(game, x, distance);
+		start_angle += FOV / (double)WIDTH;
+		x++;
 	}
 }

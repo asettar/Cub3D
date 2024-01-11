@@ -7,8 +7,8 @@
 #include "MLX/MLX42.h"
 
 
-#define WIDTH 700
-#define HEIGHT 450
+#define WIDTH 900
+#define HEIGHT 650
 #define SPEED 4
 #define FOV M_PI / 3.0
 #define TILE 64.0

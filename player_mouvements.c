@@ -47,6 +47,6 @@ void	hook_handle(void *data)
 		newy += cos(game->ply.angle) * SPEED;
 	}
 	move_player(game, newy, newx);
-	draw_map(game);
+	// draw_map(game);
 	cast_rays(game);
 }
