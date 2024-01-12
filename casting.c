@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3D.h"
 
 double horizantal_intersection(t_game *game, double angle)
 {
@@ -81,12 +81,12 @@ double vertical_intersection(t_game *game, double angle)
 // 	}
 // }
 
+
 void	project_wall(t_game *game, int x, double distance)
 {
 	double wall_height;
 
 	wall_height = TILE * ((WIDTH / 2) / tan(FOV / 2)) / distance;
-
 	int start_y = (HEIGHT / 2) - (wall_height / 2);
 	if (start_y < 0) start_y = 0;
 	int end_y = (HEIGHT / 2) + (wall_height / 2);
@@ -94,13 +94,13 @@ void	project_wall(t_game *game, int x, double distance)
 	// printf("wall height = %f\n %d %d |, x = %d ||\n", wall_height, start_y, end_y, x);
 	int y = 0;
 	for(; y < start_y; y++)
-		mlx_put_pixel(game->img, x, y, 0xCCCCCCFF);
+		mlx_put_pixel(game->img, x, y, game->ceil_color);
 	for(; y <= end_y; y++)
 	{
-		mlx_put_pixel(game->img, x, y, 0xFFCCCCFF);
+		mlx_put_pixel(game->img, x, y, 0xFF0000FF);
 	}
 	for(; y < HEIGHT; y++)
-		mlx_put_pixel(game->img, x, y, 0xFF00FFFF);
+		mlx_put_pixel(game->img, x, y, game->floor_color);
 
 }
 

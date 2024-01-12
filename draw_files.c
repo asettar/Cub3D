@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3D.h"
 
 void	draw_rectangle(t_game *game, int y, int x, int color)
 {
