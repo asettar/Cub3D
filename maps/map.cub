@@ -1,7 +1,7 @@
 EA textures/EAST.png 
 NO textures/NORTH.png
-C 0,255,0
-F 0,0,255
+C 145,224,255
+F 72,72,72
 
 WE textures/WEST.png
 SO textures/SOUTH.png

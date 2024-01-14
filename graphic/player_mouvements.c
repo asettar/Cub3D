@@ -11,6 +11,9 @@ void	chek_wall_collision(t_game *game, double newy, double newx)
 }
 
 
+void my_close_callback(void* param) {
+    clear_exit(param , EXIT_SUCCESS);
+}
 void	hook_handle(void *data)
 {
 	t_game *game = data;
@@ -21,7 +24,7 @@ void	hook_handle(void *data)
 		//free
 		clear_exit(game, EXIT_SUCCESS);
 	}
-
+	// mlx_close_hook(game->mlx, my_close_callback, game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
 		// printf("%d : %d\n", game->ply.x, game->ply.y);

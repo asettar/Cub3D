@@ -96,7 +96,7 @@ void vertical_intersection(t_game *game, t_ray *ray)
 // 	}
 // }
 
-uint32_t	get_texture_color(mlx_texture_t *texture, t_ray *ray, double wall_height, double y)
+uint32_t	get_texture_color(mlx_texture_t *texture, t_ray *ray, double wall_height, int y)
 {
 	int texture_offset_x;
 	int texture_offset_y;
@@ -112,13 +112,14 @@ uint32_t	get_texture_color(mlx_texture_t *texture, t_ray *ray, double wall_heigh
 	unsigned int index = (texture_offset_y)* texture->width * texture->bytes_per_pixel + texture_offset_x * texture->bytes_per_pixel;
 
 	uint8_t *pixels = texture->pixels;
-	// if (index >= texture->width * texture->height * texture->bytes_per_pixel)
-	// {
-	// 	printf("wallhit : %f %f ::\n", ray->wall_hitx, ray->wall_hity);
-	// 	printf("textures : %d %d ::\n", texture_offset_x, texture_offset_y);
-	// 	printf("index : %d || len = %u \n", index, texture->width * texture->height * texture->bytes_per_pixel);
-	// 	exit(1);
-	// }
+	if (index < 0 || index >= texture->width * texture->height * texture->bytes_per_pixel)
+	{
+		// printf("wallhit : %f %f ::\n", ray->wall_hitx, ray->wall_hity);
+		// printf("textures : %d %d % d::\n", texture_offset_x, texture_offset_y, y);
+		// printf("index : %d || len = %u \n", index, texture->width * texture->height * texture->bytes_per_pixel);
+		return 0;
+		exit(1);
+	}
 	uint32_t color = pixels[index] << 24 | pixels[index + 1] << 16 | pixels[index + 2] << 8 | pixels[index + 3];
 	return color;
 
