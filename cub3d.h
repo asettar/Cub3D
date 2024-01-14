@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asettar <asettar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 17:03:30 by sakarkal          #+#    #+#             */
-/*   Updated: 2024/01/12 02:37:42 by sakarkal         ###   ########.fr       */
+/*   Updated: 2024/01/14 18:34:30 by asettar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ typedef struct s_player
 	double wall_hity;
 	double angle;
 } t_player;
+
+typedef struct s_ray 
+{
+	double wall_hitx;
+	double wall_hity;
+	double horizantal_intersection;
+	double distance_to_wall;
+	double angle;
+} t_ray;
 
 typedef struct s_game
 {
@@ -90,7 +99,7 @@ typedef struct s_map
 
 ////////////////////////    UTILS     ///////////////////////////
 
-void	exit_err(char *str);
+void	exit_err(char *str, t_map *map);
 
 void	check_args(int ac, char **av);
 char	*ft_strchr(const char *s, int c);
@@ -115,7 +124,7 @@ int		invalid_number(char *str);
 bool	is_a_player(char c);
 bool	is_a_member(char c);
 void	check_in_border(int i, int j, t_map *map);
-void	check_duplicates(short flag, short full_flag);
+void	check_duplicates(short flag, short full_flag, t_map *map);
 void	check_textures_colors(char *trimmed_line, short *flag, t_map *map);
 void	read_textures(int fd, t_map *map);
 void	fill_map(t_map *map);

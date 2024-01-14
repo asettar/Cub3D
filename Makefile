@@ -3,38 +3,30 @@ CFLAGS	 =  -Wall -Werror -Wextra -O3 -ffast-math
 NAME	 =  cub3D
 MLX      =  MLX/libmlx42.a
 MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw
-INCLUDE  =  -I/Users/${USER}/.brew/Cellar/glfw/3.3.8/include/GLFW
-LIB      =  -L/Users/${USER}/.brew/Cellar/glfw/3.3.8/lib
+INCLUDE  =  -I/Users/${USER}/homebrew/Cellar/glfw/3.3.9/include/GLFW
+LIB      =  -L/Users/${USER}/homebrew/Cellar/glfw/3.3.9/lib
 
 
-SRCS	= main.c  \
-		draw_files.c \
-		player_mouvements.c \
-		casting.c \
-		graphic_handle.c \
+SRCS	= main.c \
+		graphic/draw_files.c \
+		graphic/player_mouvements.c \
+		graphic/casting.c \
+		graphic/graphic_handle.c \
 		gnl/gnl_utils.c \
 		gnl/gnl.c \
-		lib/ft_atoi.c \
-		lib/ft_printer.c \
-		lib/ft_strcmp.c \
-		lib/ft_memset.c \
-		lib/ft_repeat.c \
-		lib/ft_split.c \
-		lib/ft_strtok.c \
-		lib/ft_strtrim.c \
-		lib/ft_strchr.c \
-		utils/check_duplicated.c \
-		utils/check_empty_line.c \
-		utils/check_in_border.c \
-		utils/check_map_errs.c \
-		utils/check_textures_color.c \
-		utils/exit_err.c \
-		utils/fill_map.c \
-		utils/insert_colors.c \
-		utils/is_a_mem_player.c \
-		utils/read_map.c \
-		utils/read_textures.c \
-		utils/set_colors.c 
+		libft/ft_atoi.c \
+		libft/ft_printer.c \
+		libft/ft_strcmp.c \
+		libft/ft_memset.c \
+		libft/ft_repeat.c \
+		libft/ft_split.c \
+		libft/ft_strtok.c \
+		libft/ft_strtrim.c \
+		libft/ft_strchr.c \
+		parsing/read_map.c \
+		parsing/read_map_utils.c \
+		parsing/read_textures.c \
+		parsing/read_textures_utils.c
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
