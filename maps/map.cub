@@ -1,10 +1,10 @@
-EA textures/EAST.xpm 
-NO textures/NORTH.xpm
+EA textures/EAST.png 
+NO textures/NORTH.png
 C 0,255,0
 F 0,0,255
 
-WE textures/SOUTH.xpm
-SO textures/SOUTH.xpm
+WE textures/SOUTH.png
+SO textures/SOUTH.png
 
 
 

@@ -34,8 +34,11 @@ void	hook_handle(void *data)
 		newx -= cos(game->ply.angle) * SPEED;
 		newy -= sin(game->ply.angle) * SPEED;
 	}
-	game->ply.angle += mlx_is_key_down(game->mlx, MLX_KEY_LEFT) * -0.05 + 
-		mlx_is_key_down(game->mlx, MLX_KEY_RIGHT) * 0.05;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+		game->ply.angle += -0.05;
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+		game->ply.angle += 0.05;
+
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
 		newx += sin(game->ply.angle) * SPEED;

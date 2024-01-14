@@ -1,5 +1,5 @@
 CC		 =  cc
-CFLAGS	 =  -Wall -Werror -Wextra -O3 -ffast-math
+CFLAGS	 =  -Wall -Werror -Wextra -O3 -ffast-math 
 NAME	 =  cub3D
 MLX      =  MLX/libmlx42.a
 MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw

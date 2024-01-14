@@ -6,7 +6,7 @@
 /*   By: asettar <asettar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 17:03:30 by sakarkal          #+#    #+#             */
-/*   Updated: 2024/01/14 18:34:30 by asettar          ###   ########.fr       */
+/*   Updated: 2024/01/14 22:25:44 by asettar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 #include "MLX/MLX42.h"
 
 
-#define WIDTH 900
-#define HEIGHT 650
+#define WIDTH 1200
+#define HEIGHT 900
 #define SPEED 4
 #define FOV M_PI / 3.0
 #define TILE 64.0
@@ -60,6 +60,7 @@ typedef struct s_game
 	t_player	ply;
 	mlx_image_t* img;
 	mlx_t *mlx;
+	mlx_texture_t *texture;
 }	t_game;
 
 typedef struct s_var

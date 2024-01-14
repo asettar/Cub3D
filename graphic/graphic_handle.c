@@ -25,7 +25,9 @@ void	graphic_handle(t_map *map)
 	// mlx init 
 	game.mlx = mlx_init(WIDTH, HEIGHT, "cub", false); 
 	game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
-
+	// game.mlx = mlx_init(map->width * TILE, map->height * TILE, "cub", false);
+	// game.img = mlx_new_image(game.mlx, map->width * TILE, map->height * TILE);
+	game.texture = mlx_load_png(map->no);
 
 	// Create and display the image.
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
