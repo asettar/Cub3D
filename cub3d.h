@@ -6,7 +6,7 @@
 /*   By: asettar <asettar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 17:03:30 by sakarkal          #+#    #+#             */
-/*   Updated: 2024/01/14 22:25:44 by asettar          ###   ########.fr       */
+/*   Updated: 2024/01/14 23:59:56 by asettar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ typedef struct s_game
 	t_player	ply;
 	mlx_image_t* img;
 	mlx_t *mlx;
-	mlx_texture_t *texture;
+	mlx_texture_t *no_texture;
+	mlx_texture_t *ea_texture;
+	mlx_texture_t *so_texture;
+	mlx_texture_t *we_texture;
 }	t_game;
 
 typedef struct s_var
@@ -133,6 +136,7 @@ void	read_map(int fd, t_map *map);
 void	check_map_errors(t_map *map);
 int		empty_line(char *line, t_map *map, bool *is_map);
 
+void	clear_exit(t_game *game, int exit_status);
 void	graphic_handle(t_map *map);
 void	draw_point(t_game *game, double x, double y);
 void	draw_line(t_game *game);

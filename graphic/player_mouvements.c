@@ -1,6 +1,6 @@
 #include "../cub3D.h"
 
-void	move_player(t_game *game, double newy, double newx)
+void	chek_wall_collision(t_game *game, double newy, double newx)
 {
 	if (game->map[(int)(newy / TILE)][(int)(newx / TILE)] != '1' &&
 	 	game->map[(int)((newy + 3.0) / TILE)][(int)((newx) / TILE)] != '1' &&
@@ -19,7 +19,7 @@ void	hook_handle(void *data)
 	double newy = game->ply.y;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE)){
 		//free
-		exit(1);
+		clear_exit(game, EXIT_SUCCESS);
 	}
 
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
@@ -49,7 +49,7 @@ void	hook_handle(void *data)
 		newx -= sin(game->ply.angle) * SPEED;
 		newy += cos(game->ply.angle) * SPEED;
 	}
-	move_player(game, newy, newx);
+	chek_wall_collision(game, newy, newx);
 	// draw_map(game);
 	cast_rays(game);
 }

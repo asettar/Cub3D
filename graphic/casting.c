@@ -104,14 +104,12 @@ uint32_t	get_texture_color(mlx_texture_t *texture, t_ray *ray, double wall_heigh
 	int wall_start = ((double)HEIGHT / 2.0) - (wall_height / 2.0);
 	if (ray->horizantal_intersection)
 		texture_offset_x = fmod(ray->wall_hitx, TILE) * ((double)texture->width / TILE);
-		// texture_offset_x = fmod(ray->wall_hitx / TILE * (double)texture->width , TILE);
 	else 
-		// texture_offset_x = fmod(ray->wall_hity / TILE * (double)texture->width , TILE);
 		texture_offset_x = fmod(ray->wall_hity, TILE) * ((double)texture->width / TILE);
 	
 	texture_offset_y = (y - wall_start) * (double)texture->height / wall_height;
 
-	unsigned int index = texture_offset_y * texture->width * texture->bytes_per_pixel + texture_offset_x * texture->bytes_per_pixel;
+	unsigned int index = (texture_offset_y)* texture->width * texture->bytes_per_pixel + texture_offset_x * texture->bytes_per_pixel;
 
 	uint8_t *pixels = texture->pixels;
 	// if (index >= texture->width * texture->height * texture->bytes_per_pixel)
@@ -126,15 +124,33 @@ uint32_t	get_texture_color(mlx_texture_t *texture, t_ray *ray, double wall_heigh
 
 }
 
+mlx_texture_t*	get_correct_texture(t_game *game, t_ray *ray)
+{
+	if (ray->horizantal_intersection)
+	{
+		if (sin(ray->angle) < 0)
+			return (game->no_texture);
+		return (game->so_texture);
+	}
+	else
+	{
+		if (cos(ray->angle) < 0)
+			return (game->ea_texture);
+		return (game->we_texture);
+	}
+}
+
 void	project_wall(t_game *game, int x, t_ray *ray)
 {
 	double wall_height;
 
 	wall_height = TILE * ((double)(WIDTH / 2.0) / tan(FOV / 2.0)) / ray->distance_to_wall;
 	int start_y = (double)HEIGHT / 2.0 - (wall_height / 2.0);
-	if (start_y < 0) start_y = 0;
+	if (start_y < 0)
+		start_y = 0;
 	int end_y = ((double)HEIGHT / 2.0) + (wall_height / 2.0);
-	if (end_y >= HEIGHT) end_y = HEIGHT - 1;
+	if (end_y >= HEIGHT)
+		end_y = HEIGHT - 1;
 	// printf("wall height = %f\n %d %d |, x = %d ||\n", wall_height, start_y, end_y, x);
 	int y = 0;
 	for(; y < start_y; y++)
@@ -142,7 +158,8 @@ void	project_wall(t_game *game, int x, t_ray *ray)
 	for(; y <= end_y; y++)
 	{
 		// mlx_put_pixel(game->img, x, y, 0xFF0024FF);
-		mlx_put_pixel(game->img, x, y, get_texture_color(game->texture, ray, wall_height, y));
+		mlx_texture_t *texture = get_correct_texture(game, ray);
+		mlx_put_pixel(game->img, x, y, get_texture_color(texture, ray, wall_height, y));
 	}
 	for(; y < HEIGHT; y++)
 		mlx_put_pixel(game->img, x, y, game->floor_color);
