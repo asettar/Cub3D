@@ -33,17 +33,14 @@ void	initalize_textures(t_game *game, t_map *map)
 	free(map->ea);
 	free(map->so);
 	free(map->we);
-	if (!game->no_texture || !game->so_texture || !game->we_texture || !game->ea_texture)
+	if (!game->no_texture || !game->so_texture
+		|| !game->we_texture || !game->ea_texture)
 	{
 		ft_putstr_fd("Error : Can't read texture file\n", 2);
 		clear_exit(game, EXIT_FAILURE);
 	}
 }
 
-// mlx_delete_texture()
-// mlx_delete_image()
-// mlx_terminate()
-// delete_map
 void	intialize_game_vars(t_game *game, t_map *map)
 {
 	game->map = map->map;
@@ -61,20 +58,21 @@ void	intialize_game_vars(t_game *game, t_map *map)
 		game->ply.angle = 0;
 	else
 		game->ply.angle = M_PI;
-
-
-	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 0); 
+	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 0);
+	if (!game->mlx)
+		clear_exit(game, EXIT_FAILURE);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	if (!game->img)
+		clear_exit(game, EXIT_FAILURE);
 	initalize_textures(game, map);
 }
 
 void	graphic_handle(t_map *map)
 {
-	t_game game;
-	memset(&game, 0, sizeof(game));
+	t_game	game;
 
+	memset(&game, 0, sizeof(game));
 	intialize_game_vars(&game, map);
-	// Create and display the image.
 	mlx_image_to_window(game.mlx, game.img, 0, 0);
 	mlx_loop_hook(game.mlx, hook_handle, &game);
 	mlx_loop(game.mlx);

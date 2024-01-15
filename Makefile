@@ -12,6 +12,7 @@ SRCS	= main.c \
 		graphic/player_mouvements.c \
 		graphic/casting.c \
 		graphic/graphic_handle.c \
+		graphic/textures.c \
 		gnl/gnl_utils.c \
 		gnl/gnl.c \
 		libft/ft_atoi.c \
@@ -34,7 +35,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS)  $(MLX) $(LIB) -o $(NAME)
 
-%.o: %.c cub3D.h
+%.o: %.c cub3D.h gnl/gnl.h
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 clean:
 	rm -f $(OBJS)
@@ -42,3 +43,4 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 re : fclean all
+.PHONY : all clean fclean re

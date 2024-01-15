@@ -13,7 +13,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-// # include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
@@ -144,5 +143,6 @@ void	draw_rectangle(t_game *game, int y, int x, int color);
 void	draw_map(t_game *game);
 void	hook_handle(void *data);
 void	cast_rays(t_game *game);
-
+uint32_t	get_texture_color(mlx_texture_t *text, t_ray *ray, double wh, int y);
+mlx_texture_t	*get_correct_texture(t_game *game, t_ray *ray);
 #endif
